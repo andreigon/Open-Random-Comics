@@ -1,14 +1,12 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 export default defineComponent({
-  name: 'Background',
+  name: 'BackgroundBlock',
   data() {
     return {
       photoUrl: '@/assets/HeaderImage.png'
     }
   },
-
-  mounted() {},
 
   methods: {}
 })
@@ -36,13 +34,20 @@ export default defineComponent({
   width: 100%;
 }
 .header {
+  // parallax
+
+  //
   display: flex;
   position: relative;
   border: none;
   box-sizing: border-box;
   width: 100%;
   height: 30%;
+
   &-image {
+    //
+    transform: translateZ(10);
+    //
     min-width: 300px;
     width: 100%;
     max-height: 508px;
@@ -52,7 +57,14 @@ export default defineComponent({
     overflow: hidden;
     position: relative;
     margin-bottom: 80px;
+    z-index: 0;
+    @media screen {
+      object-fit: cover;
+    }
     &-text {
+      //
+
+      //
       display: flex;
       justify-content: center;
       align-items: center;

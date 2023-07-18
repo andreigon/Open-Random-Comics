@@ -1,7 +1,8 @@
 export interface ComicsInterface {
   title: string
   num: string
-  ComicsImage: String
+
+  ComicsImage: string
   // randomNumber: String
-  CurrentComicsNumber:String
+  CurrentComicsNumber: string
 }

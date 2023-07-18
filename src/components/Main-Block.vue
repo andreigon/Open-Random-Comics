@@ -1,27 +1,17 @@
 <script lang="ts">
 import { defineComponent } from 'vue'
 import axios from 'axios'
-import Buttons from './Buttons.vue'
-
-// interface ComponentData {
-//   comicPapper: Array<ComicsInterface>
-// }
 
 export default defineComponent({
   name: 'MainBlock',
 
-
-
-  components: {
-    Buttons
-  },
+  components: {},
   data() {
     return {
       ComicsTitle: '',
       error: [],
       ComicsData: '',
       currentComicsNumber: '',
-      // randomNumber: '',
       min: 1,
       max: 2800,
       ComicsImage: ''
@@ -35,31 +25,30 @@ export default defineComponent({
   methods: {
     getRandomComicsNumber() {
       this.randomNumber = Math.floor(Math.random() * (this.max - this.min + 1)) + this.min
-      this.currentComicsNumber=this.randomNumber
+      this.currentComicsNumber = this.randomNumber
       this.getComics()
     },
 
     getComicasNumberPlus() {
-      this.currentComicsNumber=++this.currentComicsNumber
+      this.currentComicsNumber = ++this.currentComicsNumber
       this.getComics()
     },
 
     getComicasNumberMinus() {
-      this.currentComicsNumber=--this.currentComicsNumber
+      this.currentComicsNumber = --this.currentComicsNumber
       this.getComics()
     },
 
-    getComicsNumberMin(){
-      this.currentComicsNumber=this.min
+    getComicsNumberMin() {
+      this.currentComicsNumber = this.min
       this.getComics()
     },
 
-    getComicsNumberMax(){
-      this.currentComicsNumber=this.max
+    getComicsNumberMax() {
+      this.currentComicsNumber = this.max
       this.getComics()
     },
 
-    
     getComics() {
       axios
         .get('/apiURL/' + this.currentComicsNumber + '/info.0.json')
@@ -69,7 +58,7 @@ export default defineComponent({
           console.log(response.data.img)
           this.ComicsImage = response.data.img
           const image1 = (response.data.img('image1').src = response.data.img)
-          this.ComicsImage = 'image1'
+          // this.ComicsImage = 'image1'
           console.log(this.ComicsImage)
         })
         .catch(function (error) {
@@ -81,21 +70,21 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="title">{{ ComicsTitle }} </div>
+  <div class="title">{{ ComicsTitle }}</div>
   <div class="mid">
-      <div class="ButtonContaineer">
-      <Button class="change-rotate" @click="getComicsNumberMin()" >>|</Button>
+    <div class="ButtonContaineer">
+      <Button class="change-rotate" @click="getComicsNumberMin()">>|</Button>
       <button class="next-rotate" @click="getComicasNumberMinus()">></button>
-      <button class="random" @click="getRandomComicsNumber ()">RANDOM</button>
+      <button class="random" @click="getRandomComicsNumber()">RANDOM</button>
       <button class="next" @click="getComicasNumberPlus()">></button>
-      <Button class="change"  @click="getComicsNumberMax()">>|</Button>
+      <Button class="change" @click="getComicsNumberMax()">>|</Button>
     </div>
   </div>
-  <div class="api"><img :src="ComicsImage">
-    <!-- <div class="comics"> </div> -->
+  <div class="api">
+    <img :src="ComicsImage" />
   </div>
   <div class="mid">
-      <div class="ButtonContaineer">
+    <div class="ButtonContaineer">
       <Button class="change-rotate" @click="getComicsNumberMin()">>|</Button>
       <button class="next-rotate" @click="getComicasNumberMinus()">></button>
       <button class="random" @click="getRandomComicsNumber()">RANDOM</button>
@@ -133,7 +122,7 @@ export default defineComponent({
 //   max-width: 100%;
 //   max-height: 100%;
 //   margin: 3% 25%;
-  
+
 //   display: flex;
 //   background-color: #ffffff;
 //   align-items: center;
@@ -177,7 +166,7 @@ export default defineComponent({
     border: none;
     rotate: 180deg;
     min-width: 80px;
-  min-height: 65px;
+    min-height: 65px;
     background-color: #0a2037;
     color: #ffffff;
     &:hover {
